@@ -1,4 +1,6 @@
 
+var beers;
+
 var makeRequest = function(url, callback) {
   var request = new XMLHttpRequest()
 
@@ -13,20 +15,9 @@ var requestComplete = function() {
   if (this.status !== 200) return;
 
   var jsonString = this.responseText;
-  var beers = JSON.parse(jsonString);
+  beers = JSON.parse(jsonString);
 
   populateBeersList(beers);
-}
-
-
-var populateHelper = function(beer, ul) {
-  console.log(beer);
-  var li = document.createElement("li");
-  li.classList.add("beer-item");
-  li.innerText = beer.name;
-  li.value = beers.indexOf(beer);
-
-  ul.appendChild(li);
 }
 
 
@@ -36,7 +27,37 @@ var populateBeersList = function(beers) {
     populateHelper(beer, beerListUl);
   })
 }
- 
+
+
+var populateHelper = function(beer, ul) {
+  var li = createLi()
+  var liImg = createLiImg(beer);
+  
+  li.innerText = beer.name;
+  li.value = beers.indexOf(beer);
+
+  ul.appendChild(li);
+  ul.appendChild(liImg);
+}
+
+
+var createLi = function() {
+  var li = document.createElement("li");
+  li.classList.add("beer-item");
+  return li;
+}
+
+var createLiImg = function(beer) {
+  var li = document.createElement("li");
+  var img = document.createElement("img");
+  li.classList.add("list-image");
+  img.classList.add("beer-img");
+  img.src = beer.image_url;
+
+  li.appendChild(img);
+  return li;
+}
+
 
 var app = function () {
   var url = "https://api.punkapi.com/v2/beers";

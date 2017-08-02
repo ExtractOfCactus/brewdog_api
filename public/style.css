@@ -1,0 +1,14 @@
+body {
+  /*background-color: blue;*/
+  text-align: center;
+}
+
+ul {
+  list-style: none;
+}
+
+.beer-img {
+  width: 50px;
+  padding-bottom: 25px;
+}
+
