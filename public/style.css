@@ -12,3 +12,9 @@ ul {
   padding-bottom: 25px;
 }
 
+.ingredient-type {
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 3px solid brown;
+}
+
